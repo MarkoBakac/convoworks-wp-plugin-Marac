@@ -1,0 +1,259 @@
+{
+	"template_id": "my-example-template",
+	"name": "My Example Template",
+	"description": "My Example service template with example element, intents, entities and function.",
+	"service": {
+        "service_id": "my-example-from-template",
+        "convo_service_version": 34,
+        "packages": [
+            "convo-core",
+            "act-example"
+        ],
+        "contexts": [],
+        "variables": {
+            "APP_NAME": "My Example"
+        },
+        "preview_variables": [],
+        "entities": [],
+        "intents": [],
+        "blocks": [
+            {
+                "class": "\\Convo\\Pckg\\Core\\Elements\\ConversationBlock",
+                "namespace": "convo-core",
+                "properties": {
+                    "block_id": "home",
+                    "role": "conversation_block",
+                    "name": "Home",
+                    "elements": [
+                        {
+                            "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                            "namespace": "convo-core",
+                            "properties": {
+                                "type": "default",
+                                "alexa_domain": "normal",
+                                "alexa_emotion": "neutral",
+                                "alexa_emotion_intensity": "medium",
+                                "text": "Hi there.",
+                                "append": false,
+                                "_component_id": "cc5a5a7a-3d98-ec7b-832f-98fdd9c0f81c"
+                            }
+                        },
+                        {
+                            "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                            "namespace": "convo-core",
+                            "properties": {
+                                "type": "default",
+                                "alexa_domain": "normal",
+                                "alexa_emotion": "neutral",
+                                "alexa_emotion_intensity": "medium",
+                                "text": "Try to say 'go forward' to start the game.",
+                                "append": false,
+                                "_component_id": "iygaoita-lpte-plco-dp3b-2kvdpdjnwy90"
+                            }
+                        }
+                    ],
+                    "processors": [
+                        {
+                            "class": "\\Convo\\Pckg\\Core\\Processors\\SimpleProcessor",
+                            "namespace": "convo-core",
+                            "properties": {
+                                "name": null,
+                                "ok": [
+                                    {
+                                        "class": "\\MyNamespace\\Pckg\\MyExample\\MyExampleElement",
+                                        "namespace": "act-example",
+                                        "properties": {
+                                            "_component_id": "luhvazys-ymem-ym61-ow9t-qkckc0lglxtr",
+                                            "direction": "${result.Direction}",
+                                            "direction_options": {
+                                                "directional_options_1": "${['left','forward']}",
+                                                "directional_options_2": "${['backward','left','right','forward']}",
+                                                "directional_options_3": "${['backward','forward']}",
+                                                "directional_options_4": "${['forward']}",
+                                                "directional_options_5": "${['backward','left','right','forward']}",
+                                                "directional_options_6": "${['forward']}"
+                                            },
+                                            "going": [
+                                                {
+                                                    "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                    "namespace": "convo-core",
+                                                    "properties": {
+                                                        "type": "default",
+                                                        "text": "Going ${result.Direction}",
+                                                        "append": false,
+                                                        "alexa_domain": "normal",
+                                                        "alexa_emotion": "neutral",
+                                                        "alexa_emotion_intensity": "medium",
+                                                        "_component_id": "x5mvpdum-i0im-zhpz-fgfz-0ehkdfba5bgs"
+                                                    }
+                                                }
+                                            ],
+                                            "can_not_go": [
+                                                {
+                                                    "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                    "namespace": "convo-core",
+                                                    "properties": {
+                                                        "type": "default",
+                                                        "text": "Can't go ${result.Direction}.",
+                                                        "append": false,
+                                                        "alexa_domain": "normal",
+                                                        "alexa_emotion": "neutral",
+                                                        "alexa_emotion_intensity": "medium",
+                                                        "_component_id": "ap6eaiqh-vnbl-zei4-z9c8-unewni4cdtwd"
+                                                    }
+                                                },
+                                                {
+                                                    "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                    "namespace": "convo-core",
+                                                    "properties": {
+                                                        "type": "default",
+                                                        "text": "To proceed you can go in those directions: ${human_concat(status.current_direction_options, 'or')}",
+                                                        "append": false,
+                                                        "alexa_domain": "normal",
+                                                        "alexa_emotion": "neutral",
+                                                        "alexa_emotion_intensity": "medium",
+                                                        "_component_id": "y1agjdgh-cosx-hywf-iqqp-rvlynvt1qmmm"
+                                                    }
+                                                }
+                                            ],
+                                            "status_var": "status",
+                                            "go": [
+                                                {
+                                                    "class": "\\Convo\\Pckg\\Core\\Elements\\IfElement",
+                                                    "namespace": "convo-core",
+                                                    "properties": {
+                                                        "test": "${status.last}",
+                                                        "then": [
+                                                            {
+                                                                "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                                "namespace": "convo-core",
+                                                                "properties": {
+                                                                    "type": "default",
+                                                                    "text": "It looks like we have reached the end.",
+                                                                    "append": false,
+                                                                    "alexa_domain": "normal",
+                                                                    "alexa_emotion": "neutral",
+                                                                    "alexa_emotion_intensity": "medium",
+                                                                    "_component_id": "bdgdcrkm-rfmk-fu1t-bu5t-gbtbvm2yw0qt"
+                                                                }
+                                                            },
+                                                            {
+                                                                "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                                "namespace": "convo-core",
+                                                                "properties": {
+                                                                    "type": "default",
+                                                                    "text": "Thanks for checking this template out.",
+                                                                    "append": false,
+                                                                    "alexa_domain": "normal",
+                                                                    "alexa_emotion": "neutral",
+                                                                    "alexa_emotion_intensity": "medium",
+                                                                    "_component_id": "qk5jhery-w8i2-lrnh-jt8k-ilozg2vxfqec"
+                                                                }
+                                                            },
+                                                            {
+                                                                "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                                "namespace": "convo-core",
+                                                                "properties": {
+                                                                    "type": "default",
+                                                                    "text": "Bye.",
+                                                                    "append": false,
+                                                                    "alexa_domain": "normal",
+                                                                    "alexa_emotion": "neutral",
+                                                                    "alexa_emotion_intensity": "medium",
+                                                                    "_component_id": "s2is4ipn-gmze-bifw-1i9m-avfhpdwswl8k"
+                                                                }
+                                                            },
+                                                            {
+                                                                "class": "\\Convo\\Pckg\\Core\\Elements\\EndSessionElement",
+                                                                "namespace": "convo-core",
+                                                                "properties": {
+                                                                    "_component_id": "zjjayqic-mkzb-6mac-lw92-o80bnfavyuvl"
+                                                                }
+                                                            }
+                                                        ],
+                                                        "else_if": [],
+                                                        "else": [],
+                                                        "_component_id": "rnmfxhqd-evc8-tkkf-xtfv-x9prifp0dlb5"
+                                                    }
+                                                },
+                                                {
+                                                    "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                    "namespace": "convo-core",
+                                                    "properties": {
+                                                        "type": "default",
+                                                        "text": "Going ${result.Direction}.",
+                                                        "append": false,
+                                                        "alexa_domain": "normal",
+                                                        "alexa_emotion": "neutral",
+                                                        "alexa_emotion_intensity": "medium",
+                                                        "_component_id": "qwvmtvxu-ous5-ukz0-xnrt-yyd3ptvw1lrb"
+                                                    }
+                                                },
+                                                {
+                                                    "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                                                    "namespace": "convo-core",
+                                                    "properties": {
+                                                        "type": "default",
+                                                        "text": "To proceed you can go in those directions: ${human_concat(status.current_direction_options, 'or')}",
+                                                        "append": false,
+                                                        "alexa_domain": "normal",
+                                                        "alexa_emotion": "neutral",
+                                                        "alexa_emotion_intensity": "medium",
+                                                        "_component_id": "dpvt7epd-v4u4-0i70-rgrz-kpbzbqasl6kg"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "request_filters": [
+                                    {
+                                        "class": "\\Convo\\Pckg\\Core\\Filters\\IntentRequestFilter",
+                                        "namespace": "convo-core",
+                                        "properties": {
+                                            "name": null,
+                                            "readers": [
+                                                {
+                                                    "class": "\\Convo\\Pckg\\Core\\Filters\\ConvoIntentReader",
+                                                    "namespace": "convo-core",
+                                                    "properties": {
+                                                        "intent": "act-example.MyExampleIntent",
+                                                        "disable": "",
+                                                        "required_slots": "",
+                                                        "values": [],
+                                                        "rename": [],
+                                                        "_component_id": "nvvslxwe-5xan-6czv-v1no-vixr3eyl74sr"
+                                                    }
+                                                }
+                                            ],
+                                            "_component_id": "nezpnvze-xiy6-roof-9vlj-8x0uipj2oua1"
+                                        }
+                                    }
+                                ],
+                                "_component_id": "beklzfqh-cqpc-xyec-mqtk-qrsssy9nlbg6"
+                            }
+                        }
+                    ],
+                    "fallback": [
+                        {
+                            "class": "\\Convo\\Pckg\\Core\\Elements\\TextResponseElement",
+                            "namespace": "convo-core",
+                            "properties": {
+                                "type": "default",
+                                "alexa_domain": "normal",
+                                "alexa_emotion": "neutral",
+                                "alexa_emotion_intensity": "medium",
+                                "text": "Sorry, I can't help.",
+                                "append": false,
+                                "_component_id": "mku1aliv-23mg-no7c-uiry-avdbzvqzpopa"
+                            }
+                        }
+                    ],
+                    "_component_id": "7f471568-1f9c-cae5-3e22-affb91fe81de"
+                }
+            }
+        ],
+        "fragments": [],
+        "properties": []
+    }
+}

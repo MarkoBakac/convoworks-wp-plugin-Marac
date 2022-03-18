@@ -1,0 +1,55 @@
+{
+    "MyExampleIntent": [
+        {
+            "platforms": [
+                "amazon",
+                "dialogflow"
+            ],
+            "definition": {
+                "name": "GoIntent",
+                "type": "custom",
+                "utterances": [
+                    {
+                        "raw": "I want to go left",
+                        "model": [
+                            {
+                                "text": "I want to go"
+                            },
+                            {
+                                "text": "left",
+                                "type": "@my-namespace-my-package.Direction",
+                                "slot_value": "Direction"
+                            }
+                        ]
+                    },
+                    {
+                        "raw": "go left",
+                        "model": [
+                            {
+                                "text": "go"
+                            },
+                            {
+                                "text": "left",
+                                "type": "@my-namespace-my-package.Direction",
+                                "slot_value": "Direction"
+                            }
+                        ]
+                    },
+                    {
+                        "raw": "move left",
+                        "model": [
+                            {
+                                "text": "move"
+                            },
+                            {
+                                "text": "left",
+                                "type": "@my-namespace-my-package.Direction",
+                                "slot_value": "Direction"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

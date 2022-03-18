@@ -1,0 +1,10 @@
+{
+    "namespace": "act-example",
+    "author": "ZEF Development",
+    "email": "mark@zefdev.com",
+    "source_for": [
+        "functions", "intents", "entities", "templates", "elements"
+    ],
+    "description": "Contains elements from Marac",
+    "stability": "stable"
+}
