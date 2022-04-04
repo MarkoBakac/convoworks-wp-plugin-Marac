@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: Convoworks Wp Plugin Marko
+Plugin Name: Convoworks Wp Plugin Marac
 Plugin URI: https://github.com/zef-dev/convoworks-wp-plugin-package-template
 Description: Example Plugin which provides additional features such as additional element, intents, entities, functions, template for Convoworks WP Plugin.
 Version: 1.0

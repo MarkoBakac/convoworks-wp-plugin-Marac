@@ -5,6 +5,6 @@
     "source_for": [
         "functions", "intents", "entities", "templates", "elements"
     ],
-    "description": "Contains elements from Marac",
+    "description": "Contains elements from act-example",
     "stability": "stable"
 }

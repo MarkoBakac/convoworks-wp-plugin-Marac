@@ -1,0 +1,30 @@
+<div>
+    <h2>Quiz Maker Adapter Element</h2>
+    <p>Converts a Quiz Maker quiz into a format more suited for Convoworks Trivia elements, e.g. trivia round block.</p>
+    <h4>When to use?</h4>
+    <p>
+        If you want to adapt a Quiz Maker quiz for use with Convoworks elements.
+    </p>
+
+    <h4>How to use?</h4>
+    <p>Before you start make sure you have a Quiz Maker quiz with only horizontal/vertical multiple choice questions.  </p>
+    <li>Once you have a quiz ready, take note of its ID. You can find the ID by checking the shortcode for the quiz.</li>
+    <li>Set <code>Quiz Maker Quiz ID</code> to this ID. As a side note, this property is evaluated so you can write an expression here.</li>
+    <li>Pick a <code>Storage Type</code> and <code>Name</code> under which the quiz will be stored.</li>
+    <li>
+        The result is an array of questions, where each question looks like this:
+        <ul>
+            <li><code>text</code> &mdash; The actual text of the question.</li>
+            <li><code>answers</code> &mdash; An array of answer objects, which look like this:
+                <br>
+                <ul>
+                    <li><code>text</code> &mdash; The text of the answer</li>
+                    <li><code>letter</code> &mdash; The letter associated with the answer</li>
+                    <li><code>is_correct</code> &mdash; Boolean; whether the answer is correct or not.</li>
+                </ul>
+            </li>
+            <li>As a quality-of-life feature, each question has a <code>correct_answer</code> object that is set to the correct answer. Refer to the layout of answer objects above.</li>
+        </ul>
+    </li>
+    </ul>
+</div>
