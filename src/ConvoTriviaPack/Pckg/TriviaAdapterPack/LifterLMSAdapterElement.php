@@ -1,17 +1,15 @@
 <?php
 
 declare (strict_types=1);
-namespace MyNamespace\Pckg\MyExample;
-
+namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
 use Convo\Core\Workflow\IConvoRequest;
 use Convo\Core\Workflow\IConvoResponse;
-class QuizCatAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
+class LifterLMSAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
 {
     private $_quizId;
     private $_scopeType;
     private $_scopeName;
-    const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     public function __construct($properties)
     {
@@ -34,56 +32,50 @@ class QuizCatAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContain
 
     private function _getQuestions($quizId)
     {
-        $quiz_query = new \WP_Query([
-            'post_type' => 'fca_qc_quiz',
-            'ID' => $quizId,
-            'post_status' => get_post_stati()
-        ]);
+        $thequiz = new \LLMS_Quiz($quizId);
+        $lqm = new \LLMS_Question_Manager($thequiz);
+        $questions=$lqm->get_questions();
 
-        $quiz = $quiz_query->posts[0];
+        $this->_logger->debug(\print_r($thequiz, \true));
+
+        $this->_logger->debug(\print_r($questions, \true));
 
         $formatted_quiz = [
-            'title' => $quiz->post_title,
+            'title' => $thequiz->title,
             'questions' => []
         ];
 
-        $meta = get_post_meta($quizId, "quiz_cat_questions");
-        $questions = maybe_unserialize($meta);
+        $this->_logger->debug(\print_r($formatted_quiz, \true));
 
-
-        foreach ($questions[0] as $question) {
-            $question['answers'][0]['is_correct'] = true;
-            shuffle($question['answers']);
-
+        foreach ($questions as $question) {
             $formatted_question = [
-                'text' => $question['question'],
+                'text' => $question->title,
                 'answers' => [],
-                'correct_answer' => [],
+                'correct_answer'=>[]
             ];
 
-            $i=0;
-            foreach ($question['answers'] as $index=>$answer) {
+            foreach ($question->get_choices() as $choice){
                 $formatted_answer = [
-                    'text' => $answer['answer'],
-                    'letter' => self::LETTERS[$index++ % \count(self::LETTERS)],
-                    'is_correct'=> $answer['is_correct'] ?? false
+                    'text' => $choice->get('choice'),
+                    'letter' => $choice->get('marker'),
+                    'is_correct' => $choice->get('correct')
                 ];
-                $i++;
+                $formatted_question['answers'][] = $formatted_answer;
 
                 if ($formatted_answer['is_correct']) {
                     $formatted_question['correct_answer'] = $formatted_answer;
                 }
 
-                $formatted_question['answers'][] = $formatted_answer;
             }
 
-
+            $this->_logger->info('Question choices ['.print_r($question->get_choices(), true).']');
 
             $formatted_quiz['questions'][] = $formatted_question;
-
         }
+
+        $this->_logger->debug(\print_r($formatted_quiz, \true));
+
         return $formatted_quiz;
     }
 }
-
 

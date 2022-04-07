@@ -1,0 +1,10 @@
+{
+    "namespace": "trivia-adapter-pack",
+    "author": "Marko Bakač",
+    "email": "markobakac123@gmail.com",
+    "source_for": [
+        "functions", "intents", "entities", "templates", "elements"
+    ],
+    "description": "Contains elements from trivia adapter pack",
+    "stability": "stable"
+}

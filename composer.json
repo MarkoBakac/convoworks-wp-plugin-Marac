@@ -1,7 +1,7 @@
 {
-    "name": "zef-dev/convoworks-wp-plugin-package-template",
+    "name": "marac/convoworks-wp-trivia-plugin-pack",
     "type": "library",
-    "description": "Convoworks WP Plugin Package Template is an extension which contains example elements, intents, entities, functions, template which extends the capabilities of your exising Convoworks WP Plugin",
+    "description": "This plugin package provides a package of 3 Quiz Adapter elements which extends the existing Convoworks WP Plugin.",
     "homepage": "https://github.com/zef-dev/convoworks-wp-plugin-package-template",
     "keywords": [
         "convoworks"
@@ -10,7 +10,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MyNamespace\\Pckg\\MyExample\\": "src/MyNamespace/Pckg/MyExample"
+            "ConvoTriviaPack\\Pckg\\TriviaAdapterPack\\": "src/ConvoTriviaPack/Pckg/TriviaAdapterPack"
         }
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
 declare (strict_types=1);
-namespace MyNamespace\Pckg\MyExample;
+namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
 
 use Convo\Core\Workflow\IConvoRequest;
 use Convo\Core\Workflow\IConvoResponse;
-class LifterLMSAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
+class LifterLMSAdapElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
 {
     private $_quizId;
     private $_scopeType;

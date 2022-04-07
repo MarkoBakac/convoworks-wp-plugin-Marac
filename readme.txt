@@ -16,9 +16,9 @@ You can also add additional functionality to convoworks from your existing plugi
 function my_package_register($packageProviderFactory, $container) {
     $packageProviderFactory->registerPackage(
         new Convo\Core\Factory\FunctionPackageDescriptor(
-            MyExamplePackageDefinition::class,
+            MyTriviaAdapterPackageDefinition::class,
             function() use ( $container) {
-                return new \MyNamespace\Pckg\MyExample\MyExamplePackageDefinition( $container->get('logger'));
+                return new ConvoTriviaPack\Pckg\TriviaAdapterPack\MyTriviaAdapterPackageDefinition( $container->get('logger'));
             }));
 }
 add_action( 'register_convoworks_package', 'my_package_register', 10, 2);

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace MyNamespace\Pckg\MyExample;
+namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
 use Convo\Core\Factory\AbstractPackageDefinition;
 use Convo\Core\Intent\EntityModel;
@@ -8,9 +8,9 @@ use Convo\Core\Intent\SystemEntity;
 use Convo\Core\Expression\ExpressionFunction;
 use Psr\SimpleCache\CacheInterface;
 
-class MyExamplePackageDefinition extends AbstractPackageDefinition
+class TriviaAdapterPackageDefinition extends AbstractPackageDefinition
 {
-    const NAMESPACE = 'act-example';
+    const NAMESPACE = 'trivia-adapter-pack';
     private $_wpdb;
 
     public function __construct(\Psr\Log\LoggerInterface $logger)
@@ -21,7 +21,6 @@ class MyExamplePackageDefinition extends AbstractPackageDefinition
         $this->_wpdb = $wpdb;
         parent::__construct($logger, self::NAMESPACE, __DIR__);
 
-        $this->addTemplate($this->_loadFile(__DIR__ . '/my-example.template.json'));
     }
 
     protected function _initEntities()
@@ -81,7 +80,7 @@ class MyExamplePackageDefinition extends AbstractPackageDefinition
     {
         return array(
 
-            new \Convo\Core\Factory\ComponentDefinition($this->getNamespace(), '\\MyNamespace\\Pckg\\MyExample\\LifterLMSAdapterElement', 'LifterLMS Adapter Element',
+            new \Convo\Core\Factory\ComponentDefinition($this->getNamespace(), '\\ConvoTriviaPack\\Pckg\\TriviaAdapterPack\\LifterLMSAdapterElement', 'LifterLMS Adapter Element',
                 'Adapt a LifterLMS multiple choice question quiz into a suitable format for Convoworks Trivia', ['quiz_id' => ['editor_type' => 'text', 'editor_properties' => [],
                     'defaultValue' => null, 'name' => 'LifterLMS Quiz ID', 'description' => 'LifterLMS quiz ID to fetch questions for (check the shortcode for the quiz ID)', 'valueType' => 'string'],
                     'scope_type' => ['editor_type' => 'select', 'editor_properties' => ['options' => ['request' => 'Request', 'session' => 'Session', 'installation' => 'Installation', 'user' => 'User']],
@@ -99,11 +98,11 @@ class MyExamplePackageDefinition extends AbstractPackageDefinition
 
                         public function createComponent($properties, $service)
                         {
-                            return new \MyNamespace\Pckg\MyExample\LifterLMSAdapterElement($properties, $this->_wpdb);
+                            return new \ConvoTriviaPack\Pckg\TriviaAdapterPack\LifterLMSAdapterElement($properties, $this->_wpdb);
                         }
                     }]),
 
-            new \Convo\Core\Factory\ComponentDefinition($this->getNamespace(), '\\MyNamespace\\Pckg\\MyExample\\QuizCatAdapterElement', 'QuizCat Adapter Element',
+            new \Convo\Core\Factory\ComponentDefinition($this->getNamespace(), '\\ConvoTriviaPack\\Pckg\\TriviaAdapterPack\\QuizCatAdapterElement', 'QuizCat Adapter Element',
                 'Adapt a QuizCat multiple choice question quiz into a suitable format for Convoworks Trivia', ['quiz_id' => ['editor_type' => 'text', 'editor_properties' => [],
                     'defaultValue' => null, 'name' => 'QuizCat Quiz ID', 'description' => 'QuizCat quiz ID to fetch questions for (check the shortcode for the quiz ID)', 'valueType' => 'string'],
                     'scope_type' => ['editor_type' => 'select', 'editor_properties' => ['options' => ['request' => 'Request', 'session' => 'Session', 'installation' => 'Installation', 'user' => 'User']],
@@ -121,12 +120,13 @@ class MyExamplePackageDefinition extends AbstractPackageDefinition
 
                         public function createComponent($properties, $service)
                         {
-                            return new \MyNamespace\Pckg\MyExample\QuizCatAdapterElement($properties, $this->_wpdb);
+                            return new \ConvoTriviaPack\Pckg\TriviaAdapterPack\QuizCatAdapterElement($properties, $this->_wpdb);
                         }
                     }]),
 
 
-            new \Convo\Core\Factory\ComponentDefinition($this->getNamespace(), '\\MyNamespace\\Pckg\\MyExample\\QuizMakerElement', 'Quiz Maker Element',
+
+            new \Convo\Core\Factory\ComponentDefinition($this->getNamespace(), '\\ConvoTriviaPack\\Pckg\\TriviaAdapterPack\\QuizMakerAdapterElement', 'Quiz Maker Adapter Element',
                 'Adapt a Quiz Maker multiple choice question quiz into a suitable format for Convoworks Trivia', ['quiz_id' => ['editor_type' => 'text', 'editor_properties' => [],
                     'defaultValue' => null, 'name' => 'Quiz Maker Quiz ID', 'description' => 'Quiz Maker quiz ID to fetch questions for (check the shortcode for the quiz ID)', 'valueType' => 'string'],
                     'scope_type' => ['editor_type' => 'select', 'editor_properties' => ['options' => ['request' => 'Request', 'session' => 'Session', 'installation' => 'Installation', 'user' => 'User']],
@@ -144,7 +144,7 @@ class MyExamplePackageDefinition extends AbstractPackageDefinition
 
                         public function createComponent($properties, $service)
                         {
-                            return new \MyNamespace\Pckg\MyExample\QuizMakerElement($properties, $this->_wpdb);
+                            return new \ConvoTriviaPack\Pckg\TriviaAdapterPack\QuizMakerAdapterElement($properties, $this->_wpdb);
                         }
                     }]),
 

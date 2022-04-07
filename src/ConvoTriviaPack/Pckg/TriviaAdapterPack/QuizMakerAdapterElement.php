@@ -1,11 +1,12 @@
 <?php
 
 declare (strict_types=1);
-namespace MyNamespace\Pckg\MyExample;
+namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
+
 
 use Convo\Core\Workflow\IConvoRequest;
 use Convo\Core\Workflow\IConvoResponse;
-class QuizMakerElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
+class QuizMakerAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
 {
     private $_quizId;
     private $_scopeType;
@@ -19,6 +20,17 @@ class QuizMakerElement extends \Convo\Core\Workflow\AbstractWorkflowContainerCom
         $this->_scopeType = $properties['scope_type'];
         $this->_scopeName = $properties['scope_name'];
         $this->_wpdb = $wpdb;
+        set_include_path(
+            WP_PLUGIN_DIR.
+            PATH_SEPARATOR.
+            get_include_path()
+        );
+
+        $qm_plugin_dir = WP_PLUGIN_DIR.'/quiz_maker';
+        $file_path = \realpath(\str_replace('/', DIRECTORY_SEPARATOR, "$qm_plugin_dir/public/class-quiz-maker-public.php"));
+
+        $this->_logger->info(\print_r($file_path, \true));
+
     }
     public function read(IConvoRequest $request, IConvoResponse $response)
     {
@@ -33,20 +45,17 @@ class QuizMakerElement extends \Convo\Core\Workflow\AbstractWorkflowContainerCom
     private function _loadQuestions($quizId)
     {
         $ays_questions = [];
-        $quiz_id = \intval($quizId);
-        $quiz = $this->_wpdb->get_results($this->_wpdb->prepare("SELECT * FROM {$this->_wpdb->prefix}aysquiz_quizes WHERE id=%d", $quiz_id), 'ARRAY_A');
 
-        $this->_logger->debug(\print_r($quiz, \true));
+        $qmp = new \Quiz_Maker_Public('Quiz Maker', '6.3.1.7');
+        $quiz = $qmp->get_quiz_by_id($quizId);
 
-        $question_id = $quiz[0]['question_ids'];
+        $this->_logger->info(\print_r($quiz, \true));
 
-        $this->_logger->debug(\print_r($question_id, \true));
+        $question_arr = $qmp->get_quiz_questions_count($quizId);
 
-        $question_str = ( explode( ',', $question_id) );
+        $this->_logger->debug(\print_r($question_arr, \true));
 
-        $this->_logger->debug(\print_r($question_str, \true));
-
-        foreach ($question_str as $q) {
+        foreach ($question_arr as $q) {
 
             $questions = $this->_wpdb->get_results($this->_wpdb->prepare("SELECT * FROM {$this->_wpdb->prefix}aysquiz_questions WHERE id=%d", $q), 'ARRAY_A');
 
@@ -56,7 +65,6 @@ class QuizMakerElement extends \Convo\Core\Workflow\AbstractWorkflowContainerCom
             foreach ($questions as $question) {
                 $ays_answers = [];
                 $correct = [];
-
 
                 $answers = $this->_wpdb->get_results($this->_wpdb->prepare("SELECT * FROM {$this->_wpdb->prefix}aysquiz_answers WHERE question_id=%d", $q), 'ARRAY_A');
 

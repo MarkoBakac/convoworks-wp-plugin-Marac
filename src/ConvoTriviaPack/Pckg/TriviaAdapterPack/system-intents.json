@@ -1,5 +1,5 @@
 {
-    "MyExampleIntent": [
+    "TriviaAdapterIntent": [
         {
             "platforms": [
                 "amazon",
