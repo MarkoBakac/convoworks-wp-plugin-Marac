@@ -1,5 +1,5 @@
 # Convoworks WP Trivia Adapter Package
-> This plugin package provides a package of 3 Quiz Adapter elements which extends the existing Convoworks WP Plugin.
+> This plugin package provides 3 Quiz Adapter elements which extend the existing Convoworks WP Plugin.
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -19,17 +19,17 @@ There are 2 ways to setup this plugin:
 2. You can download this package as a zip file and upload the plugin through your Wordpress site
 
 ## Usage
-1. To use it on the Convoworks WP plugin, we simply just press configure packages when we make a new service and select the name of the plugin package, in this example: `act-example`
+1. To use it on the Convoworks WP plugin, we simply just press configure packages when we make a new service and select the name of the plugin package, in this example: `trivia-adapter-pack`
 
 ![Act screenshot](./img/conf.jpg)
 
 ![Act screenshot](./img/conf_package.jpg)
 
-2. When the package is turned on in the configure packages menu then we can see, additionaly to the `convoworks-core` package, there is the `act-example` package
+2. When the package is turned on in the configure packages menu then we can see, additionaly to the `convoworks-core` package, there is the `trivia-adapter-pack` package
 
 ![Act screenshot](./img/usage.jpg)
 
-##Plugin Links
+## Plugin Links
 QuizCat link: https://fatcatapps.com    
 LifterLMS link: https://lifterlms.com   
 QuizMaker link: https://wordpress.org/plugins/quiz-maker/
