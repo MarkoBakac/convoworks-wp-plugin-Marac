@@ -3,6 +3,7 @@
 declare (strict_types=1);
 namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
+include_once( FCA_QC_PLUGIN_DIR . '/includes/quiz/quiz.php' );
 
 use Convo\Core\Workflow\IConvoRequest;
 use Convo\Core\Workflow\IConvoResponse;
@@ -34,52 +35,46 @@ class QuizCatAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContain
 
     private function _getQuestions($quizId)
     {
-        $quiz_query = new \WP_Query([
-            'post_type' => 'fca_qc_quiz',
-            'ID' => $quizId,
-            'post_status' => get_post_stati()
-        ]);
-
-        $quiz = $quiz_query->posts[0];
+//        $quiz_query = new \WP_Query([
+//            'post_type' => 'fca_qc_quiz',
+//            'ID' => $quizId,
+//            'post_status' => get_post_stati()
+//        ]);
+//
+//        $quiz = $quiz_query->posts[0];
 
         $formatted_quiz = [
-            'title' => $quiz->post_title,
-            'questions' => []
         ];
 
         $meta = get_post_meta($quizId, "quiz_cat_questions");
         $questions = maybe_unserialize($meta);
-
 
         foreach ($questions[0] as $question) {
             $question['answers'][0]['is_correct'] = true;
             shuffle($question['answers']);
 
             $formatted_question = [
-                'text' => $question['question'],
+                'question' => $question['question'],
                 'answers' => [],
-                'correct_answer' => [],
             ];
 
-            $i=0;
+//            $i=0;
             foreach ($question['answers'] as $index=>$answer) {
                 $formatted_answer = [
-                    'text' => $answer['answer'],
+                    'answer' => $answer['answer'],
                     'letter' => self::LETTERS[$index++ % \count(self::LETTERS)],
                     'is_correct'=> $answer['is_correct'] ?? false
                 ];
-                $i++;
+                $formatted_question['answers'][] = $formatted_answer;
+//                $i++;
 
                 if ($formatted_answer['is_correct']) {
-                    $formatted_question['correct_answer'] = $formatted_answer;
+                    $correct = $formatted_answer['letter'];
+                    $correct_answer = $formatted_answer['answer'];
                 }
 
-                $formatted_question['answers'][] = $formatted_answer;
             }
-
-
-
-            $formatted_quiz['questions'][] = $formatted_question;
+            $formatted_quiz[] = ['question' => $formatted_question['question'], 'answers' => $formatted_question['answers'],'correct'=>$correct, 'correct_answer' => $correct_answer];
 
         }
         return $formatted_quiz;

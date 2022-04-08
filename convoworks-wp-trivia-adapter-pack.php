@@ -2,12 +2,12 @@
 
 /*
 Plugin Name: Convoworks Wp Trivia Adapter Pack
-Plugin URI: https://github.com/zef-dev/convoworks-wp-plugin-package-template
+Plugin URI: https://github.com/MarkoBakac/convoworks-wp-trivia-plugin-pack
 Description: Example Plugin which provides additional features such as additional element, intents, entities, functions, template for Convoworks WP Plugin.
-Version: 1.0
-Author: Marko
-Author URI: https://github.com/zef-dev
-License: A "Slug" license name e.g. GPL2
+Version: 1.0.0
+Author: Marko Bakac
+Author URI: https://github.com/MarkoBakac
+License: A "Slug" license name e.g. GPL3
 */
 
 require_once __DIR__.'/vendor/autoload.php';

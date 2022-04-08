@@ -76,15 +76,16 @@ class QuizMakerAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowConta
 
                 foreach ($answers as $i => $answer) {
 
-                    $ays_answers[] = ['text' => $answer['answer'], 'letter' => self::LETTERS[$i % \count(self::LETTERS)], 'is_correct' => $answer['correct']];
+                    $ays_answers[] = ['answer' => $answer['answer'], 'letter' => self::LETTERS[$i % \count(self::LETTERS)], 'is_correct' => $answer['correct']];
                     if ($ays_answers[$i]['is_correct']) {
-                        $correct = $ays_answers[$i];
+                        $correct = $ays_answers[$i]['letter'];
+                        $correct_answer = $ays_answers[$i]['answer'];
                     }
 
                 }
 
 
-                $ays_questions[] = ['text' => $question['question'], 'answers' => $ays_answers, 'correct_answer' => $correct];
+                $ays_questions[] = ['question' => $question['question'], 'answers' => $ays_answers,'correct'=>$correct, 'correct_answer' => $correct_answer];
 
             }
         }

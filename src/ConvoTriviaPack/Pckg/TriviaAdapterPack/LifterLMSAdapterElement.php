@@ -40,42 +40,38 @@ class LifterLMSAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowConta
 
         $this->_logger->debug(\print_r($questions, \true));
 
-        $formatted_quiz = [
-            'title' => $thequiz->title,
-            'questions' => []
-        ];
-
-        $this->_logger->debug(\print_r($formatted_quiz, \true));
+        $formatted_quiz = [];
 
         foreach ($questions as $question) {
             $formatted_question = [
-                'text' => $question->title,
+                'question' => $question->title,
                 'answers' => [],
-                'correct_answer'=>[]
             ];
 
-            foreach ($question->get_choices() as $choice){
+            foreach ($question->get_choices() as $choice) {
                 $formatted_answer = [
-                    'text' => $choice->get('choice'),
+                    'answer' => $choice->get('choice'),
                     'letter' => $choice->get('marker'),
                     'is_correct' => $choice->get('correct')
                 ];
                 $formatted_question['answers'][] = $formatted_answer;
 
                 if ($formatted_answer['is_correct']) {
-                    $formatted_question['correct_answer'] = $formatted_answer;
+                    $correct = $formatted_answer['letter'];
+                    $correct_answer = $formatted_answer['answer'];
                 }
 
             }
 
-            $this->_logger->info('Question choices ['.print_r($question->get_choices(), true).']');
+            $this->_logger->info('Question choices [' . print_r($question->get_choices(), true) . ']');
 
-            $formatted_quiz['questions'][] = $formatted_question;
+            $formatted_quiz[] = ['question' => $formatted_question['question'], 'answers' => $formatted_question['answers'],'correct'=>$correct, 'correct_answer' => $correct_answer];
         }
 
         $this->_logger->debug(\print_r($formatted_quiz, \true));
 
         return $formatted_quiz;
     }
+
 }
 
