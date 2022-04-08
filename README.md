@@ -15,8 +15,8 @@
 
 ## Setup
 There are 2 ways to setup this plugin:
-1. You can manually download this package here and just paste it into your `wp_content/plugins` folder
-2. You can download this package as a zip file and upload the plugin through your Wordpress site
+1. Upload the zip file of the plugin through your Wordpress site
+2. Manually extract the folder inside the zip file into your `wp_content/plugins` folder
 
 ## Usage
 1. To use it on the Convoworks WP plugin, we simply just press configure packages when we make a new service and select the name of the plugin package, in this example: `trivia-adapter-pack`
