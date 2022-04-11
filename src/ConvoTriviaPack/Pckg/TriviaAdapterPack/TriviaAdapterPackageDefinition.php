@@ -15,33 +15,8 @@ class TriviaAdapterPackageDefinition extends AbstractPackageDefinition
 
     public function __construct(\Psr\Log\LoggerInterface $logger,$wpdb)
     {
-        parent::__construct($logger, self::NAMESPACE, __DIR__);
         $this->_wpdb = $wpdb;
-    }
-
-    protected function _initIntents()
-    {
-        return $this->_loadIntents(__DIR__ . '/system-intents.json');
-    }
-
-    public function getFunctions()
-    {
-        $functions = [];
-
-        $functions[] = new ExpressionFunction(
-            'my_example_function',
-            function ($text) {
-                return sprintf('my_example_function(%1$t)', $text);
-            },
-            function ($args, $text) {
-                if (is_string($text)) {
-                    return $text . ' adding example text';
-                }
-                return 'This is some example text, since you failed to provide an string.';
-            }
-        );
-
-        return $functions;
+        parent::__construct($logger, self::NAMESPACE, __DIR__);
     }
 
     protected function _initDefintions()
@@ -86,6 +61,7 @@ class TriviaAdapterPackageDefinition extends AbstractPackageDefinition
                         public function __construct($wpdb)
                         {
                             $this->_wpdb = $wpdb;
+
                         }
 
                         public function createComponent($properties, $service)
