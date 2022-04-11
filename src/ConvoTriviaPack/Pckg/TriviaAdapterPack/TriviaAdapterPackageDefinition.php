@@ -13,42 +13,10 @@ class TriviaAdapterPackageDefinition extends AbstractPackageDefinition
     const NAMESPACE = 'trivia-adapter-pack';
     private $_wpdb;
 
-    public function __construct(\Psr\Log\LoggerInterface $logger)
-
+    public function __construct(\Psr\Log\LoggerInterface $logger,$wpdb)
     {
-        global $wpdb;
-
-        $this->_wpdb = $wpdb;
         parent::__construct($logger, self::NAMESPACE, __DIR__);
-
-    }
-
-    protected function _initEntities()
-    {
-        $entities = [];
-        $entities['Direction'] = new SystemEntity('Direction');
-        $entity_name_model = new EntityModel('Direction', false);
-        $entity_name_model->load([
-            "name" => "Direction",
-            "values" => [
-                [
-                    "value" => "left",
-                ],
-                [
-                    "value" => "right",
-                ],
-                [
-                    "value" => "forward",
-                ],
-                [
-                    "value" => "backward",
-                ]
-            ]
-        ]);
-        $entities['Direction']->setPlatformModel('amazon', $entity_name_model);
-        $entities['Direction']->setPlatformModel('dialogflow', $entity_name_model);
-
-        return $entities;
+        $this->_wpdb = $wpdb;
     }
 
     protected function _initIntents()
@@ -88,19 +56,8 @@ class TriviaAdapterPackageDefinition extends AbstractPackageDefinition
                     'scope_name' => ['editor_type' => 'text', 'editor_properties' => array('multiple' => \false), 'defaultValue' => 'questions', 'name' => 'Name',
                         'description' => 'Name under which to store the quiz', 'valueType' => 'string'], '_preview_angular' => ['type' => 'html',
                         'template' => '<div class="code">' . 'Get questions from LifterLMS quiz [<b>{{ component.properties.quiz_id }}</b>]' . '</div>'],
-                    '_workflow' => 'read', '_help' => ['type' => 'file'], '_factory' => new class($this->_wpdb) implements \Convo\Core\Factory\IComponentFactory {
-                        private $_wpdb;
-
-                        public function __construct($wpdb)
-                        {
-                            $this->_wpdb = $wpdb;
-                        }
-
-                        public function createComponent($properties, $service)
-                        {
-                            return new \ConvoTriviaPack\Pckg\TriviaAdapterPack\LifterLMSAdapterElement($properties, $this->_wpdb);
-                        }
-                    }]),
+                    '_workflow' => 'read', '_help' => ['type' => 'file']
+                ]),
 
             new \Convo\Core\Factory\ComponentDefinition($this->getNamespace(), '\\ConvoTriviaPack\\Pckg\\TriviaAdapterPack\\QuizCatAdapterElement', 'QuizCat Adapter Element',
                 'Adapt a QuizCat multiple choice question quiz into a suitable format for Convoworks Trivia', ['quiz_id' => ['editor_type' => 'text', 'editor_properties' => [],
@@ -110,19 +67,8 @@ class TriviaAdapterPackageDefinition extends AbstractPackageDefinition
                     'scope_name' => ['editor_type' => 'text', 'editor_properties' => array('multiple' => \false), 'defaultValue' => 'questions', 'name' => 'Name',
                         'description' => 'Name under which to store the quiz', 'valueType' => 'string'], '_preview_angular' => ['type' => 'html',
                         'template' => '<div class="code">' . 'Get questions from QuizCat quiz [<b>{{ component.properties.quiz_id }}</b>]' . '</div>'],
-                    '_workflow' => 'read', '_help' => ['type' => 'file'], '_factory' => new class($this->_wpdb) implements \Convo\Core\Factory\IComponentFactory {
-                        private $_wpdb;
-
-                        public function __construct($wpdb)
-                        {
-                            $this->_wpdb = $wpdb;
-                        }
-
-                        public function createComponent($properties, $service)
-                        {
-                            return new \ConvoTriviaPack\Pckg\TriviaAdapterPack\QuizCatAdapterElement($properties, $this->_wpdb);
-                        }
-                    }]),
+                    '_workflow' => 'read', '_help' => ['type' => 'file']
+                ]),
 
 
 

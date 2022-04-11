@@ -3,37 +3,11 @@
 declare (strict_types=1);
 namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
-include_once( FCA_QC_PLUGIN_DIR . '/includes/quiz/quiz.php' );
-
-use Convo\Core\Workflow\IConvoRequest;
-use Convo\Core\Workflow\IConvoResponse;
-class QuizCatAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
+class QuizCatAdapterElement extends AbstractRead  implements \Convo\Core\Workflow\IConversationElement
 {
-    private $_quizId;
-    private $_scopeType;
-    private $_scopeName;
     const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-    public function __construct($properties)
-    {
-        parent::__construct($properties);
-        $this->_quizId = $properties['quiz_id'];
-        $this->_scopeType = $properties['scope_type'];
-        $this->_scopeName = $properties['scope_name'];
-    }
-
-    public function read(IConvoRequest $request, IConvoResponse $response)
-    {
-        $quiz_id = $this->evaluateString($this->_quizId);
-        $questions = $this->_getQuestions($quiz_id);
-        $this->_logger->info('Got questions [' . \print_r($questions, \true) . ']');
-        $scope_type = $this->evaluateString($this->_scopeType);
-        $scope_name = $this->evaluateString($this->_scopeName);
-        $params = $this->getService()->getServiceParams($scope_type);
-        $params->setServiceParam($scope_name, $questions);
-    }
-
-    private function _getQuestions($quizId)
+    protected function _getQuestions($quizId)
     {
         $formatted_quiz = [
         ];

@@ -16,12 +16,13 @@ require_once __DIR__.'/vendor/autoload.php';
  * @param Convo\Core\Factory\PackageProviderFactory $packageProviderFactory
  * @param Psr\Container\ContainerInterface $container
  */
-function my_package_register($packageProviderFactory, $container) {
+function trivia_pack_register($packageProviderFactory, $container){
 	$packageProviderFactory->registerPackage(
 		new Convo\Core\Factory\FunctionPackageDescriptor(
 			'\ConvoTriviaPack\Pckg\TriviaAdapterPack\TriviaAdapterPackageDefinition',
-			function() use ( $container) {
-				return new \ConvoTriviaPack\Pckg\TriviaAdapterPack\TriviaAdapterPackageDefinition( $container->get('logger'));
-			}));
+            function () use ($container) {
+                global $wpdb;
+                return new \ConvoTriviaPack\Pckg\TriviaAdapterPack\TriviaAdapterPackageDefinition($container->get('logger'), $wpdb);
+            }));
 }
-add_action( 'register_convoworks_package', 'my_package_register', 10, 2);
+add_action( 'register_convoworks_package', 'trivia_pack_register', 10, 2);
