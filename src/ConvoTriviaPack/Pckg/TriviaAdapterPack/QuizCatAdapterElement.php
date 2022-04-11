@@ -35,14 +35,6 @@ class QuizCatAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContain
 
     private function _getQuestions($quizId)
     {
-//        $quiz_query = new \WP_Query([
-//            'post_type' => 'fca_qc_quiz',
-//            'ID' => $quizId,
-//            'post_status' => get_post_stati()
-//        ]);
-//
-//        $quiz = $quiz_query->posts[0];
-
         $formatted_quiz = [
         ];
 
@@ -58,7 +50,7 @@ class QuizCatAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContain
                 'answers' => [],
             ];
 
-//            $i=0;
+
             foreach ($question['answers'] as $index=>$answer) {
                 $formatted_answer = [
                     'answer' => $answer['answer'],
@@ -66,7 +58,7 @@ class QuizCatAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContain
                     'is_correct'=> $answer['is_correct'] ?? false
                 ];
                 $formatted_question['answers'][] = $formatted_answer;
-//                $i++;
+
 
                 if ($formatted_answer['is_correct']) {
                     $correct = $formatted_answer['letter'];
