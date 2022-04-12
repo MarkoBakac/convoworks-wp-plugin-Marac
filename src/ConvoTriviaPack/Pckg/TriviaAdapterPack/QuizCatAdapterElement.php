@@ -3,10 +3,8 @@
 declare (strict_types=1);
 namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
-class QuizCatAdapterElement extends AbstractRead  implements \Convo\Core\Workflow\IConversationElement
+class QuizCatAdapterElement extends AbstractQuestionsAdapterElement
 {
-    const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
     protected function _getQuestions($quizId)
     {
         $formatted_quiz = [

@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Convoworks Wp Trivia Adapter Pack
-Plugin URI: https://github.com/MarkoBakac/convoworks-wp-trivia-plugin-pack
+Plugin URI: https://github.com/MarkoBakac/trivia-plugin-pack
 Description: Example Plugin which provides additional features such as additional element, intents, entities, functions, template for Convoworks WP Plugin.
 Version: 1.0.0
 Author: Marko Bakac

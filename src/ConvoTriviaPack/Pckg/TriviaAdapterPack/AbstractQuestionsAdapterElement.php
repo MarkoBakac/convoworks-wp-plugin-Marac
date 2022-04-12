@@ -5,11 +5,12 @@ namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 use Convo\Core\Workflow\IConvoRequest;
 use Convo\Core\Workflow\IConvoResponse;
 
-abstract class AbstractRead extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
+abstract class AbstractQuestionsAdapterElement extends \Convo\Core\Workflow\AbstractWorkflowContainerComponent implements \Convo\Core\Workflow\IConversationElement
 {
     protected $_quizId;
     protected $_scopeType;
     protected $_scopeName;
+    const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     public function __construct($properties)
     {
@@ -23,7 +24,7 @@ abstract class AbstractRead extends \Convo\Core\Workflow\AbstractWorkflowContain
     {
         $quiz_id = $this->evaluateString($this->_quizId);
         $questions = $this->_getQuestions($quiz_id);
-        $this->_logger->info('Got questions [' . \print_r($questions, \true) . ']');
+        $this->_logger->info('Got questions [' . \print_r(count($questions), \true) . ']');
         $scope_type = $this->evaluateString($this->_scopeType);
         $scope_name = $this->evaluateString($this->_scopeName);
         $params = $this->getService()->getServiceParams($scope_type);

@@ -3,10 +3,9 @@
 declare (strict_types=1);
 namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
-class QuizMakerAdapterElement extends AbstractRead  implements \Convo\Core\Workflow\IConversationElement
+class QuizMakerAdapterElement extends AbstractQuestionsAdapterElement
 {
     private $_wpdb;
-    const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     public function __construct($properties, $wpdb)
     {

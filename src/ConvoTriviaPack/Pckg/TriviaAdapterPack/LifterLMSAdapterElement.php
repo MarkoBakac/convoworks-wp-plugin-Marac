@@ -3,7 +3,7 @@
 declare (strict_types=1);
 namespace ConvoTriviaPack\Pckg\TriviaAdapterPack;
 
-class LifterLMSAdapterElement extends AbstractRead  implements \Convo\Core\Workflow\IConversationElement
+class LifterLMSAdapterElement extends AbstractQuestionsAdapterElement
 {
     protected function _getQuestions($quizId)
     {
