@@ -18,7 +18,7 @@ class QuizMakerAdapterElement extends AbstractQuestionsAdapterElement
     {
         $ays_questions = [];
 
-        $qmp = new \Quiz_Maker_Public('Quiz Maker', '6.3.2.0');
+        $qmp = new \Quiz_Maker_Public('Quiz Maker', AYS_QUIZ_VERSION);
         $quiz = $qmp->get_quiz_by_id($quizId);
 
         $this->_logger->info(\print_r($quiz, \true));
