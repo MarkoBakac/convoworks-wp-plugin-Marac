@@ -16,7 +16,7 @@ Provides 3 Quiz Adapter elements (QuizCat,LifterLMS and Quiz Maker) which extend
 These 3 adapter elements that are included in the package allow you to make a trivia quiz from QuizCat, Quiz Maker or LifterLMS in a very simple way using convoworks. The plugin adds elements which know how to read the quizzes and then use them in your Trivia game.<br />
 Check out more about Convoworks trivia on their official site.
 
-== Usage ==
+== Quiz implementation ==
 1. In the Convoworks WP Services create a new service (e.g. Quiz Maker) with the Mini Film Trivia or Trivia Multiplayer template.
 2. To enable the package, we simply just press configure packages when we make a new service and select the name of the plugin package, in this example: `trivia-adapter-pack`.
 3. When the package is turned on in the configure packages menu then we can see, additionaly to the `convoworks-core` package, there is the `trivia-adapter-pack` package.
