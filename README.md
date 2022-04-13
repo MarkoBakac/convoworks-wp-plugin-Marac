@@ -1,5 +1,5 @@
 # Trivia Adapters for Convoworks
-> This plugin adds a package for Convoworks and allows us to make a voice trivia quiz game for a QuizCat, Quiz Maker or LifterLMS quiz
+> This plugin adds a package for Convoworks and allows us to make a voice trivia quiz game for a QuizCat, Quiz Maker or LifterLMS quiz.
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -22,13 +22,13 @@ You will also need to have composer installed so the plugin package will work. S
 
 ## Implementation
 1. In the Convoworks WP Services create a new service (e.g. Quiz Maker) with the Mini Film Trivia or Trivia Multiplayer template.
-2. To enable the package, we simply just press configure packages when we make a new service and select the name of the plugin package, in this example: `trivia-adapter-pack`
+2. To enable the package, we simply just press configure packages when we make a new service and select the name of the plugin package, in this example: `trivia-adapter-pack`.
 
 ![Act screenshot](./img/conf.jpg)
 
 ![Act screenshot](./img/conf_package.jpg)
 
-3When the package is turned on in the configure packages menu then we can see, additionaly to the `convoworks-core` package, there is the `trivia-adapter-pack` package
+3. When the package is turned on in the configure packages menu then we can see, additionaly to the `convoworks-core` package, there is the `trivia-adapter-pack` package.
 
 ![Act screenshot](./img/usage.jpg)
 
