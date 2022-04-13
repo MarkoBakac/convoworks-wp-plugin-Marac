@@ -3,7 +3,7 @@
 /*
 Plugin Name: Trivia Adapter Pack
 Plugin URI: https://github.com/MarkoBakac/trivia-adapter-pack
-Description: Example Plugin which provides additional features such as additional element, intents, entities, functions, template for Convoworks WP Plugin.
+Description: This plugin adds a package for Convoworks and allows us to make a voice trivia quiz game for a QuizCat, Quiz Maker or LifterLMS quiz.
 Version: 1.0.0
 Author: Marko Bakac
 Author URI: https://github.com/MarkoBakac
