@@ -25,9 +25,7 @@ Check out more about Convoworks trivia on their official site.
 
 == Installation ==
 To begin with it is necessary to have Convoworks WP plugin installed on your WordPress site.<br />
-There are 2 ways to setup this plugin:
-1. Upload the zip file of the plugin through your Wordpress site
-2. Manually extract the folder inside the zip file into your `wp_content/plugins` folder
+You can then just download and activate 'Trivia Adapter Pack'.
 
 == Changelog ==
 = 1.0.0 =
