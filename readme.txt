@@ -30,5 +30,5 @@ There are 2 ways to setup this plugin:
 2. Manually extract the folder inside the zip file into your `wp_content/plugins` folder
 
 == Changelog ==
-= 0.0.1 =
-* The first version of the plugin
+= 1.0.0 =
+* The first stable version of the plugin

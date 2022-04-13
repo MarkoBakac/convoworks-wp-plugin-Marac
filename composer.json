@@ -1,8 +1,8 @@
 {
-    "name": "marac/convoworks-wp-trivia-plugin-pack",
+    "name": "marac/trivia-adapter-pack",
     "type": "library",
     "description": "This plugin package provides a package of 3 Quiz Adapter elements which extends the existing Convoworks WP Plugin.",
-    "homepage": "https://github.com/zef-dev/convoworks-wp-plugin-package-template",
+    "homepage": "https://github.com/zef-dev/trivia-adapter-pack",
     "keywords": [
         "convoworks"
     ],
