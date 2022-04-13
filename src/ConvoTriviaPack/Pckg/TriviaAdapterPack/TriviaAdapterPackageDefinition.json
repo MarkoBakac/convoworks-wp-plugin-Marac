@@ -5,6 +5,6 @@
     "source_for": [
         "functions", "intents", "entities", "templates", "elements"
     ],
-    "description": "Contains elements from trivia adapter pack",
+    "description": "This plugin adds a package for Convoworks and allows us to make a voice trivia quiz game for a QuizCat, Quiz Maker or LifterLMS quiz.",
     "stability": "stable"
 }
